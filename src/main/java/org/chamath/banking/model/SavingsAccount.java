@@ -45,6 +45,11 @@ public class SavingsAccount implements Account {
         }
     }
 
+    public void transfer(Account transferTo, BigDecimal amount) throws NegativeValueException, InsufficientFundsException{
+        withdraw(amount);
+        transferTo.deposit(amount);
+    }
+
     public String getAccountNumber() {
         return accountNumber;
     }

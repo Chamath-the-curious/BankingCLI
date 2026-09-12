@@ -8,4 +8,6 @@ import java.math.BigDecimal;
 public interface Account {
     public void deposit(BigDecimal amount) throws NegativeValueException;
     public void withdraw(BigDecimal amount) throws NegativeValueException, InsufficientFundsException;
+    public void transfer(Account transferTo, BigDecimal amount) throws NegativeValueException, InsufficientFundsException;
+    public BigDecimal getBalance();
 }
