@@ -7,15 +7,15 @@ import org.chamath.util.CustomerIdGenerator;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class Customer {
-    private final long customerId;
+    private final String customerId;
     private String name;
     private String email;
     private String phone;
 
     private static final AtomicLong counter = new AtomicLong(0);
 
-    public Customer(String name, String email, String phone) {
-        this.customerId = CustomerIdGenerator.generateNextId();
+    public Customer(String nicNumber, String name, String email, String phone) {
+        this.customerId = nicNumber;
         this.name = name;
         this.phone = phone;
     }
