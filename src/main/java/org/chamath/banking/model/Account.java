@@ -10,4 +10,5 @@ public interface Account {
     public void withdraw(BigDecimal amount) throws NegativeValueException, InsufficientFundsException;
     public void transfer(Account transferTo, BigDecimal amount) throws NegativeValueException, InsufficientFundsException;
     public BigDecimal getBalance();
+    public String getAccountNumber();
 }
