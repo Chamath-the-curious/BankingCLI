@@ -60,4 +60,12 @@ public class SavingsAccount implements Account {
     public BigDecimal getBalance() {
         return balance;
     }
+
+    @Override
+    public String toString() {
+        return "\nAccount Number: " + accountNumber +
+                "\nType: " + accountType +
+                "\nOwner: " + owner +
+                "\nBalance: " + balance;
+    }
 }

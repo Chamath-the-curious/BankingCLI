@@ -50,4 +50,12 @@ public class Customer {
     public String getPhone() {
         return phone;
     }
+
+    @Override
+    public String toString() {
+        return "\nCustomer ID: " + customerId +
+                "\nName: " + name +
+                "\nEmail: " + email +
+                "\nPhone: " + phone;
+    }
 }
