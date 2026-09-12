@@ -23,7 +23,11 @@ class CurrentsAccountTest {
 
     @BeforeEach
     void setup() {
-        currentAccount = new CurrentAccount(customer, 1000);
+        try {
+            currentAccount = new CurrentAccount(customer, 1000);
+        } catch (NegativeValueException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Test
@@ -69,7 +73,7 @@ class CurrentsAccountTest {
     }
 
     @Test
-    void transferNegativeAmount() {
+    void transferNegativeAmount() throws NegativeValueException {
         Account transferTo = new CurrentAccount(customer, 3000);
 
         assertThrows(
@@ -81,7 +85,7 @@ class CurrentsAccountTest {
     }
 
     @Test
-    void transferInsufficientAmount() {
+    void transferInsufficientAmount() throws NegativeValueException {
         Account transferTo = new CurrentAccount(customer, 3000);
 
         assertThrows(

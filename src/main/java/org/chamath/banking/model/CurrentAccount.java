@@ -14,17 +14,13 @@ public class CurrentAccount implements Account {
     private BigDecimal balance;
     private List<Transaction> transactionList;
 
-    public CurrentAccount(Customer owner, double initialDeposit) {
+    public CurrentAccount(Customer owner, double initialDeposit) throws NegativeValueException {
         this.accountNumber = AccountNumberGenerator.generate();
         this.accountType = "Current";
         this.owner = owner;
         this.balance = BigDecimal.valueOf(0);
 
-        try {
-            deposit(BigDecimal.valueOf(initialDeposit));
-        } catch (NegativeValueException e) {
-            throw new RuntimeException(e);
-        }
+        deposit(BigDecimal.valueOf(initialDeposit));
     }
 
     public void deposit(BigDecimal amount) throws NegativeValueException {

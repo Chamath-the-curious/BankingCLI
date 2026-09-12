@@ -22,7 +22,11 @@ class SavingsAccountTest {
 
     @BeforeEach
     void setup() {
-        savingsAccount = new SavingsAccount(customer, 1000);
+        try {
+            savingsAccount = new SavingsAccount(customer, 1000);
+        } catch (NegativeValueException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Test
@@ -71,7 +75,7 @@ class SavingsAccountTest {
     }
 
     @Test
-    void transferNegativeAmount() {
+    void transferNegativeAmount() throws NegativeValueException {
         Account transferTo = new SavingsAccount(customer, 3000);
 
         assertThrows(
@@ -83,7 +87,7 @@ class SavingsAccountTest {
     }
 
     @Test
-    void transferInsufficientAmount() {
+    void transferInsufficientAmount() throws NegativeValueException {
         Account transferTo = new SavingsAccount(customer, 3000);
 
         assertThrows(
