@@ -64,8 +64,8 @@ public class SavingsAccount implements Account {
     @Override
     public String toString() {
         return "\nAccount Number: " + accountNumber +
-                "\nType: " + accountType +
-                "\nOwner: " + owner +
-                "\nBalance: " + balance;
+                "\nType         : " + accountType +
+                "\nOwner        : " + owner +
+                "\nBalance      : " + balance;
     }
 }
