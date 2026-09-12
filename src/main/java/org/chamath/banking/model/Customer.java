@@ -1,7 +1,7 @@
-package org.chamath.model;
+package org.chamath.banking.model;
 
 import org.apache.commons.validator.routines.EmailValidator;
-import org.chamath.exception.InvalidEmailException;
+import org.chamath.banking.exception.InvalidEmailException;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
-package org.chamath.model;
+package org.chamath.banking.model;
 
-import org.chamath.exception.InsufficientFundsException;
-import org.chamath.exception.NegativeValueException;
+import org.chamath.banking.exception.InsufficientFundsException;
+import org.chamath.banking.exception.NegativeValueException;
 
 import java.math.BigDecimal;
 

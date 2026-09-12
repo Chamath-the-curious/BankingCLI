@@ -1,4 +1,4 @@
-package org.chamath.util;
+package org.chamath.banking.util;
 
 import java.util.HashSet;
 import java.util.Set;

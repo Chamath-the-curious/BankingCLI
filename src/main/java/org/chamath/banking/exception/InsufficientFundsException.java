@@ -1,4 +1,4 @@
-package org.chamath.exception;
+package org.chamath.banking.exception;
 
 public class InsufficientFundsException extends Exception {
     @Override

@@ -1,11 +1,10 @@
-package org.chamath.model;
+package org.chamath.banking.model;
 
-import org.chamath.exception.InsufficientFundsException;
-import org.chamath.exception.NegativeValueException;
+import org.chamath.banking.exception.InsufficientFundsException;
+import org.chamath.banking.exception.NegativeValueException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
