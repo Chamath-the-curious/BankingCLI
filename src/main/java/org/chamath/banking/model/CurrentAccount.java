@@ -5,12 +5,14 @@ import org.chamath.banking.exception.NegativeValueException;
 import org.chamath.banking.util.AccountNumberGenerator;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class CurrentAccount implements Account {
     private final String accountNumber;
     private final String accountType;
     private final Customer owner;
     private BigDecimal balance;
+    private List<Transaction> transactionList;
 
     public CurrentAccount(Customer owner, double initialDeposit) {
         this.accountNumber = AccountNumberGenerator.generate();
