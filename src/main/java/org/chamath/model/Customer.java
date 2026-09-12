@@ -2,7 +2,6 @@ package org.chamath.model;
 
 import org.apache.commons.validator.routines.EmailValidator;
 import org.chamath.exception.InvalidEmailException;
-import org.chamath.util.CustomerIdGenerator;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -36,7 +35,7 @@ public class Customer {
         this.phone = phone;
     }
 
-    public long getCustomerId() {
+    public String getCustomerId() {
         return customerId;
     }
 
