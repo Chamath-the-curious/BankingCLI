@@ -16,6 +16,13 @@ public class SavingsAccount implements Account {
         this.accountNumber = AccountNumberGenerator.generate();
         this.accountType = "Savings";
         this.owner = owner;
+        this.balance = BigDecimal.valueOf(0);
+
+        try {
+            deposit(BigDecimal.valueOf(initialDeposit));
+        } catch (NegativeValueException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void deposit(BigDecimal amount) throws NegativeValueException {
