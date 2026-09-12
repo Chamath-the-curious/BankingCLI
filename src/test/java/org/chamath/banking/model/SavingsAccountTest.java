@@ -35,7 +35,8 @@ class SavingsAccountTest {
     void depositNegativeAmountTest() {
         assertThrows(
                 NegativeValueException.class,
-                () -> savingsAccount.deposit(BigDecimal.valueOf(-1000)));
+                () -> savingsAccount.deposit(BigDecimal.valueOf(-1000))
+        );
     }
 
     @Test
@@ -48,13 +49,48 @@ class SavingsAccountTest {
     void withdrawNegativeAmountTest() {
         assertThrows(
                 NegativeValueException.class,
-                () -> savingsAccount.withdraw(BigDecimal.valueOf(-500)));
+                () -> savingsAccount.withdraw(BigDecimal.valueOf(-500))
+        );
     }
 
     @Test
     void withdrawAmountHigherThanBalance() {
         assertThrows(
                 InsufficientFundsException.class,
-                () -> savingsAccount.withdraw(BigDecimal.valueOf(2000)));
+                () -> savingsAccount.withdraw(BigDecimal.valueOf(2000))
+        );
+    }
+
+    @Test
+    void transferTest() throws NegativeValueException, InsufficientFundsException{
+        Account transferTo = new SavingsAccount(customer, 3000);
+
+        savingsAccount.transfer(transferTo, BigDecimal.valueOf(750));
+        assertEquals(savingsAccount.getBalance(), BigDecimal.valueOf(250.0));
+        assertEquals(transferTo.getBalance(), BigDecimal.valueOf(3750.0));
+    }
+
+    @Test
+    void transferNegativeAmount() {
+        Account transferTo = new SavingsAccount(customer, 3000);
+
+        assertThrows(
+                NegativeValueException.class,
+                () -> savingsAccount.transfer(transferTo, BigDecimal.valueOf(-750))
+        );
+        assertEquals(savingsAccount.getBalance(), BigDecimal.valueOf(1000.0));
+        assertEquals(transferTo.getBalance(), BigDecimal.valueOf(3000.0));
+    }
+
+    @Test
+    void transferInsufficientAmount() {
+        Account transferTo = new SavingsAccount(customer, 3000);
+
+        assertThrows(
+                InsufficientFundsException.class,
+                () -> savingsAccount.transfer(transferTo, BigDecimal.valueOf(5000))
+        );
+        assertEquals(savingsAccount.getBalance(), BigDecimal.valueOf(1000.0));
+        assertEquals(transferTo.getBalance(), BigDecimal.valueOf(3000.0));
     }
 }

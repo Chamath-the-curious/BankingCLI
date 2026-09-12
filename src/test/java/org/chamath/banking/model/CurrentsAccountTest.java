@@ -58,4 +58,37 @@ class CurrentsAccountTest {
                 InsufficientFundsException.class,
                 () -> currentAccount.withdraw(BigDecimal.valueOf(2000)));
     }
+
+    @Test
+    void transferTest() throws NegativeValueException, InsufficientFundsException{
+        Account transferTo = new CurrentAccount(customer, 3000);
+
+        currentAccount.transfer(transferTo, BigDecimal.valueOf(750));
+        assertEquals(currentAccount.getBalance(), BigDecimal.valueOf(250.0));
+        assertEquals(transferTo.getBalance(), BigDecimal.valueOf(3750.0));
+    }
+
+    @Test
+    void transferNegativeAmount() {
+        Account transferTo = new CurrentAccount(customer, 3000);
+
+        assertThrows(
+                NegativeValueException.class,
+                () -> currentAccount.transfer(transferTo, BigDecimal.valueOf(-750))
+        );
+        assertEquals(currentAccount.getBalance(), BigDecimal.valueOf(1000.0));
+        assertEquals(transferTo.getBalance(), BigDecimal.valueOf(3000.0));
+    }
+
+    @Test
+    void transferInsufficientAmount() {
+        Account transferTo = new CurrentAccount(customer, 3000);
+
+        assertThrows(
+                InsufficientFundsException.class,
+                () -> currentAccount.transfer(transferTo, BigDecimal.valueOf(5000))
+        );
+        assertEquals(currentAccount.getBalance(), BigDecimal.valueOf(1000.0));
+        assertEquals(transferTo.getBalance(), BigDecimal.valueOf(3000.0));
+    }
 }
