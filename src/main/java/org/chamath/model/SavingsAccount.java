@@ -1,0 +1,56 @@
+package org.chamath.model;
+
+import org.chamath.exception.InsufficientFundsException;
+import org.chamath.exception.NegativeValueException;
+import org.chamath.util.AccountNumberGenerator;
+
+import java.math.BigDecimal;
+
+public class SavingsAccount implements Account {
+    private final String accountNumber;
+    private final String accountType;
+    private final Customer owner;
+    private BigDecimal balance;
+
+    public SavingsAccount(Customer owner, double initialDeposit) {
+        this.accountNumber = AccountNumberGenerator.generate();
+        this.accountType = "Savings";
+        this.owner = owner;
+    }
+
+    public void deposit(BigDecimal amount) throws NegativeValueException {
+        if (amount.compareTo(BigDecimal.valueOf(0)) >= 0) {
+            balance = balance.add(amount);
+        } else {
+            throw new NegativeValueException();
+        }
+    }
+
+    public void withdraw(BigDecimal amount) throws NegativeValueException, InsufficientFundsException {
+        if (amount.compareTo(BigDecimal.valueOf(0)) < 0) {
+            throw new NegativeValueException();
+        }
+
+        if (amount.compareTo(balance) <= 0) {
+            balance = balance.subtract(amount);
+        } else {
+            throw new InsufficientFundsException();
+        }
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public Customer getOwner() {
+        return owner;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+}
