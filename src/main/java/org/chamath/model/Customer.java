@@ -3,6 +3,8 @@ package org.chamath.model;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.chamath.exception.InvalidEmailException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class Customer {
@@ -10,6 +12,7 @@ public class Customer {
     private String name;
     private String email;
     private String phone;
+    private List<Account> accountList;
 
     private static final AtomicLong counter = new AtomicLong(0);
 
@@ -17,6 +20,11 @@ public class Customer {
         this.customerId = nicNumber;
         this.name = name;
         this.phone = phone;
+        accountList = new ArrayList<>();
+    }
+
+    public void addAccount(Account account) {
+        accountList.add(account);
     }
 
     public void setName(String name) {
@@ -49,6 +57,10 @@ public class Customer {
 
     public String getPhone() {
         return phone;
+    }
+
+    public List<Account> getAccountList() {
+        return accountList;
     }
 
     @Override
