@@ -21,6 +21,12 @@ public class Customer {
         this.name = name;
         this.phone = phone;
         accountList = new ArrayList<>();
+
+        try {
+            setEmail(email);
+        } catch (InvalidEmailException e) {
+            System.out.println("Invalid email");
+        }
     }
 
     public void addAccount(Account account) {
