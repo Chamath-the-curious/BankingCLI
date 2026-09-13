@@ -1,5 +1,6 @@
 package org.chamath.banking.repository;
 
+import org.chamath.banking.exception.AccountNotFoundException;
 import org.chamath.banking.model.Account;
 
 import java.util.HashMap;
@@ -17,8 +18,12 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     @Override
-    public Account getAccountByAccountNumber(String accountNumber) {
-        return accountHashMap.get(accountNumber);
+    public Account getAccountByAccountNumber(String accountNumber) throws AccountNotFoundException {
+        if (accountHashMap.containsKey(accountNumber)) {
+            return accountHashMap.get(accountNumber);
+        } else {
+            throw new AccountNotFoundException();
+        }
     }
 
     @Override
