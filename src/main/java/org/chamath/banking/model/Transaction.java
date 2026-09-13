@@ -11,11 +11,11 @@ public class Transaction {
     private LocalDate date;
     private BigDecimal balanceAfterTransaction;
 
-    public Transaction(BigDecimal balanceAfterTransaction, BigDecimal amount, TransactionType type, String transactionId) {
-        this.balanceAfterTransaction = balanceAfterTransaction;
-        this.date = LocalDate.now();
-        this.amount = amount;
-        Type = type;
+    public Transaction(String transactionId, TransactionType type, BigDecimal amount, BigDecimal balanceAfterTransaction) {
         this.transactionId = transactionId;
+        Type = type;
+        this.amount = amount;
+        this.date = LocalDate.now();
+        this.balanceAfterTransaction = balanceAfterTransaction;
     }
 }
