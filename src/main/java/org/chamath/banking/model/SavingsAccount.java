@@ -5,6 +5,7 @@ import org.chamath.banking.exception.NegativeValueException;
 import org.chamath.banking.util.AccountNumberGenerator;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SavingsAccount implements Account {
@@ -13,12 +14,15 @@ public class SavingsAccount implements Account {
     private final Customer owner;
     private BigDecimal balance;
     private List<Transaction> transactionList;
+    private int nextTransactionId;
 
     public SavingsAccount(Customer owner, double initialDeposit) throws NegativeValueException {
         this.accountNumber = AccountNumberGenerator.generate();
         this.accountType = "Savings";
         this.owner = owner;
         this.balance = BigDecimal.valueOf(0);
+        transactionList = new ArrayList<>();
+        nextTransactionId = 1;
 
         deposit(BigDecimal.valueOf(initialDeposit));
     }
@@ -62,6 +66,17 @@ public class SavingsAccount implements Account {
 
     public BigDecimal getBalance() {
         return balance;
+    }
+
+    public String generateTransactionId() {
+        return String.format("T%03d", nextTransactionId++);
+    }
+
+    public void addTransaction(TransactionType type, double amount) {
+        String transactionId = generateTransactionId();
+        BigDecimal balanceAfterTransaction = balance;
+        Transaction transaction = new Transaction(transactionId, type, BigDecimal.valueOf(amount), balanceAfterTransaction);
+        transactionList.add(transaction);
     }
 
     @Override
