@@ -69,11 +69,18 @@ public class Customer {
         return accountList;
     }
 
+    public void printAccounts() {
+        for (Account account : accountList) {
+            System.out.println("- " + account.getAccountNumber() + " (" + account.getAccountType() + ") ");
+        }
+    }
+
     @Override
     public String toString() {
-        return "\nCustomer ID   : " + customerId +
+        return  "\nCustomer ID  : " + customerId +
                 "\nName         : " + name +
                 "\nEmail        : " + email +
-                "\nPhone        : " + phone;
+                "\nPhone        : " + phone +
+                "\n\nAccounts   :";
     }
 }
